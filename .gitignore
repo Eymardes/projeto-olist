@@ -1,0 +1,23 @@
+.venv/
+.venv/**
+venv/
+env/
+ENV/
+
+# Caso uma venv seja criada diretamente na raiz do projeto
+/bin/
+/include/
+/lib/
+/lib64/
+/pyvenv.cfg
+
+__pycache__/
+.ipynb_checkpoints/
+.pytest_cache/
+archive/X_train.csv
+archive/X_test.csv
+archive/y_train.csv
+archive/y_test.csv
+archive/scaler.pkl
+archive/target_encoders.pkl
+archive/modelo_final.pkl

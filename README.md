@@ -29,11 +29,21 @@ Os arquivos CSV já estão disponíveis na pasta `archive/` do repositório.
 
 ## Como executar
 
+Crie e ative um ambiente virtual:
+
 ```bash
-pip install pandas numpy matplotlib seaborn scikit-learn xgboost joblib
+python3 -m venv .venv
+source .venv/bin/activate
 ```
 
-Execute os notebooks na ordem:
+Instale as dependências do projeto:
+
+```bash
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+Execute os notebooks na ordem abaixo:
 
 ```
 1. feature_olist.ipynb
@@ -41,6 +51,31 @@ Execute os notebooks na ordem:
 3. preprocessamento_olist.ipynb
 4. modelo_olist.ipynb
 5. tuning_olist.ipynb
+```
+
+O notebook `preprocessamento_olist.ipynb` gera os arquivos usados no treinamento:
+`X_train.csv`, `X_test.csv`, `y_train.csv` e `y_test.csv`.
+Por isso, execute essa etapa antes de abrir `modelo_olist.ipynb` ou `tuning_olist.ipynb`.
+
+O preprocessamento preserva todos os dados validos: nao remove outliers e nao aplica
+winsorization/clip. Ele remove apenas linhas duplicadas, linhas com nulos/brancos,
+target invalido e identificadores unicos que nao servem para treinamento.
+
+Para executar pelo VS Code:
+
+1. Abra a pasta do projeto no VS Code.
+2. Selecione o interpretador Python da venv: `.venv/bin/python`.
+3. Abra cada notebook e selecione esse mesmo kernel da venv.
+4. Execute os notebooks na ordem indicada acima.
+
+Para executar todos via terminal:
+
+```bash
+jupyter nbconvert --to notebook --execute feature_olist.ipynb --inplace
+jupyter nbconvert --to notebook --execute eda_olist.ipynb --inplace
+jupyter nbconvert --to notebook --execute preprocessamento_olist.ipynb --inplace
+jupyter nbconvert --to notebook --execute modelo_olist.ipynb --inplace
+jupyter nbconvert --to notebook --execute tuning_olist.ipynb --inplace
 ```
 
 ---
